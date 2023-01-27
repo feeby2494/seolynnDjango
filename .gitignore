@@ -1,0 +1,13 @@
+.env
+*/.env
+venv
+seolynn/.env
+seolynn/seolynn/.env
+
+*/*.db
+*/*.sqlite
+seolynn/db.sqlite3
+
+*/__pycache__
+seolynn/seolynn/__pycache__
+seolynn/home/__pycache__
