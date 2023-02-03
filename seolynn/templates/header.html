@@ -1,0 +1,92 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <!-- <img src="" width="112" height="28"> -->
+            <p class="title has-text-light">Seolynn Data</p>
+        </a>
+    
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+
+        {% if request.user.is_authenticated %}
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Web Services
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="{% url 'OrderSubmitSingleProject'  %}">
+              Create new order with one Project
+            </a>
+            <a class="navbar-item" href="{% url 'OrderSubmitMultiProjects'  %}">
+              Create new order with many Projects
+            </a>
+            <a class="navbar-item" href="{% url 'OrdersAll' user.get_username %}">
+              All your Orders
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="{% url 'ProjectsAll' user.get_username %}">
+              All you Projects
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {% if request.user.is_authenticated %}
+                <a class="button is-light" href="{% url 'logout' %}">
+                    Log out
+                </a>
+            {% else %}
+                <a class="button is-primary" href="{% url 'django_registration_register' %}">
+                    <strong>Sign up</strong>
+                </a>
+                <a class="button is-light" href="{% url 'login' %}">
+                    Log in
+                </a>
+            {% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Add a click event on each of them
+$navbarBurgers.forEach( el => {
+  el.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    // Get the target from the "data-target" attribute
+    const target = el.dataset.target;
+    const $target = document.getElementById(target);
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    el.classList.toggle('is-active');
+    $target.classList.toggle('is-active');
+
+  });
+});
+
+});
+  </script>

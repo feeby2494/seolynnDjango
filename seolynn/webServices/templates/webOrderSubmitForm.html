@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Create Work Order with one Project</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="hero has-text-centered ">
+        <div class="hero-body">
+            <h2 class="title has-text-centered">Create new Order with one Project</h2>
+            <form action="/webservices/submit_one_project/" method="post" class="form mt-2">
+                {% csrf_token %}
+                <div class="project_form form box mt-2">
+                    <div class="field">
+                        <div class="control box">
+                            Language: 
+                            <label class="ml-1 checkbox mr-2">
+                                Python
+                                {{form.python}}
+                            </label>
+                            <label class="checkbox mr-2">
+                                R Language
+                                {{form.r_language}}
+                            </label>
+                            <label class="checkbox mr-2">
+                                Excel
+                                {{form.excel}}
+                              </label>
+                              
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control box">
+                            Type of Project: 
+                            <label class="ml-1 checkbox mr-2">
+                                Machine Learning
+                                {{form.machine_learning}}
+                              </label>
+                              <label class="checkbox mr-2">
+                                Django
+                                {{form.django}}
+                              </label>
+                              <label class="checkbox mr-2">
+                                React JS
+                                {{form.react}}
+                              </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control box">
+                            Other Type of Work:
+                          <label class="ml-1 checkbox">
+                            Hourly Contract
+                            {{form.hourly_contract}}
+                          </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Project Name</label>
+                        <div class="control">
+                            {{form.project_name|add_class:"input is-success"}}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                            {{form.description|add_class:"textarea"}}
+                        </div>
+                    </div>
+                </div>
+                <div class="control">
+                    <button type="submit" class="button is-link mt-1">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

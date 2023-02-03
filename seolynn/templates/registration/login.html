@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+{% block contents %}
+  <section class="hero has-text-centered ">
+    <div class="hero-body">
+      <div class="task-container columns is-multiline">
+        <div class="card column is-4 is-offset-4 is-12-mobile">
+          <h2 class="title">Log In</h2>
+          <form method="post" class="form">
+            {% csrf_token %}
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.username|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.password|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="control">
+              <button class="button is-link mt-1">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

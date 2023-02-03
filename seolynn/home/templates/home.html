@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+
+{% block contents %}
+    
+    <section class="hero is-link">
+        <div class="hero-body">
+            {% if request.user.is_authenticated %}
+            <p class="title">
+            Hello, {{ user.get_username }}
+            </p>
+            <p class="subtitle mt-2">
+            Follow the links, "Web Services", up at the Navbar to get started!
+            </p>
+            <p class="subtitle mt-2">
+                Mobile Users: the Hamburger menu is on the top right corner!
+            </p>
+            {% else %}
+            <p class="title">Hello, What's your name?</p>
+            <p class="subtitle mt-2">Please login at the navbar menu.</p>
+            <p class="subtitle mt-2">
+                Mobile Users: the Hamburger menu is on the top right corner!
+            </p>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

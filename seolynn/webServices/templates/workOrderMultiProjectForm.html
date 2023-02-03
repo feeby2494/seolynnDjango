@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Create Work Order with many Projects</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="hero has-text-centered ">
+        <div class="hero-body"> 
+            <h2 class="title has-text-centered">Create new Order with many Projects</h2>
+            <form class="form" id="form_container" action="/webservices/submit_multi_project/" method="POST">
+                {% csrf_token %}
+                {{formset.management_form}}
+                {% for form in formset %}
+                <div class="project_form form box mt-2">
+                    <div class="field">
+                        <div class="control box">
+                            Language: 
+                            <label class="ml-1 checkbox mr-2">
+                                Python
+                                {{form.python}}
+                            </label>
+                            <label class="checkbox mr-2">
+                                R Language
+                                {{form.r_language}}
+                            </label>
+                            <label class="checkbox mr-2">
+                                Excel
+                                {{form.excel}}
+                              </label>
+                              
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control box">
+                            Type of Project: 
+                            <label class="ml-1 checkbox mr-2">
+                                Machine Learning
+                                {{form.machine_learning}}
+                              </label>
+                              <label class="checkbox mr-2">
+                                Django
+                                {{form.django}}
+                              </label>
+                              <label class="checkbox mr-2">
+                                React JS
+                                {{form.react}}
+                              </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control box">
+                            Other Type of Work:
+                          <label class="ml-1 checkbox">
+                            Hourly Contract
+                            {{form.hourly_contract}}
+                          </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Project Name</label>
+                        <div class="control">
+                            {{form.project_name|add_class:"input is-success"}}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                            {{form.description|add_class:"textarea"}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+                <div class="control" id="control_buttons">
+                    <button id="add_form" class="button is-link mt-1">Add Another Project</button>
+                    <button type="submit" class="button is-link mt-1">Submit</button>
+                </div>
+            </form>
+                
+        </div>
+    </section>
+    <script>
+        let projectForm = document.querySelectorAll(".project_form")
+        let container = document.querySelector("#form_container")
+        let addButton = document.querySelector("#add_form")
+        let totalForms = document.querySelector("#id_project_list-TOTAL_FORMS")
+        let controlButtons = document.querySelector("#control_buttons")
+
+        let formNum = projectForm.length-1
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e){
+            e.preventDefault()
+
+            let newForm = projectForm[0].cloneNode(true)
+            let formRegex = RegExp(`list-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `list-${formNum}-`)
+            container.insertBefore(newForm, controlButtons)
+            
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
+    
+{% endblock %}

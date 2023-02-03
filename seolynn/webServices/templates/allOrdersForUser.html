@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>All Orders for {{username}}</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="section">
+        <h2 class="title has-text-centered">All Orders for {{username}}</h2>
+    </section>
+    <div id="allOrders" class="columns is-multiline">
+        {% for order in orders %}
+            <div class="column is-4">
+                <div class="card mt-3 ">
+                    <div class="card-content">
+                        <h3>{{order.slug}}</h3>
+                        <a href="{{order.get_absolute_url}}">Link to this order's page</a>
+                    </div>
+                </div> 
+            </div>
+        {% endfor %}
+    </div> 
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block contents %}
+<h3></h3>
+<section class="section">
+    <h2 class="title has-text-centered">Project ID: {{ project.id }}</h2>
+</section>
+<div id="oneProjects" class="is-primary box">
+    
+    <ul>
+        <li>Slug: {{ project.slug }}</li>
+        <li>Name: {{ project.project_name }}</li>
+        <li>Descriptions: {{ project.description }}</li>
+    </ul>
+</div>
+{% endblock %}

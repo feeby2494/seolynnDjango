@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django_registration.backends.activation.urls')),
+    path('account/', include('django.contrib.auth.urls')),
+    path('webservices/', include('webServices.urls')),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 

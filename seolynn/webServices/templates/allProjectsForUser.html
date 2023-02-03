@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>All Projects for User: {{ username }}</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="section">
+        <h2 class="title has-text-centered">All Projects for User: {{ username }}</h2>
+    </section>
+    <div id="allProjects" class="columns is-multiline">
+        {% for project in projects %}
+            <div class="column is-4">
+                <div class="card mt-3 ">
+                    <div class="card-content">
+                        <a href="{{ project.get_absolute_url }}">Link to this Project Page</a>
+                        <ul>
+                            <li>Slug: {{ project.slug }}</li>
+                            <li>Name: {{ project.project_name }}</li>
+                            <li>Descriptions: {{ project.description }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+        {% endfor %}
+    </div>
+{% endblock %}
