@@ -23,6 +23,7 @@ load_dotenv(find_dotenv())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -33,9 +34,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 
-CSRF_TRUSTED_ORIGINS=os.getenv("CSRF_TRUSTED_ORIGINS", "127.0.0.1,localhost").split(",")
+CSRF_TRUSTED_ORIGINS=os.getenv("CSRF_TRUSTED_ORIGINS", "http://127.0.0.1").split(",")
 
 
 # Application definition
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'seolynn.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates', 'os.path.join(BASE_DIR, "templates")'],
+        'DIRS': ['./templates', f'{os.path.join(BASE_DIR, "templates")}'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
