@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv, find_dotenv
 import pymysql
+from django.core.management.utils import get_random_secret_key
 
 # Get env vars
 load_dotenv(find_dotenv())
@@ -27,14 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^d1u6+psaxmko&tnylm4*k5na9keoqvtg!jm3w-6_quieivhb8'
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
-CSRF_TRUSTED_ORIGINS=['http://localhost']
+CSRF_TRUSTED_ORIGINS=os.getenv("CSRF_TRUSTED_ORIGINS", "127.0.0.1,localhost").split(",")
 
 
 # Application definition
@@ -63,8 +64,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'seolynn.urls'
 
-print(f"{BASE_DIR}/templates")
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -87,23 +86,29 @@ WSGI_APPLICATION = 'seolynn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
-    'default': {   
-        'ENGINE': 'django.db.backends.mysql',   
-        'NAME': os.getenv('MYSQL_DATABASE_NAME'),   
-        'USER': os.getenv('MYSQL_DATABASE_USERNAME'),   
-        'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD'),   
-        'HOST': '127.0.0.1',   
-        'PORT': '3306',   
-        'OPTIONS': {   
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"   
-        }   
-    }   
-}
+# Testing if MSQL is setup in .env first
+if len(os.getenv('MYSQL_DATABASE_NAME')) >= 1:
+    DATABASES = {
+        'default': {   
+            'ENGINE': 'django.db.backends.mysql',   
+            'NAME': os.getenv('MYSQL_DATABASE_NAME'),   
+            'USER': os.getenv('MYSQL_DATABASE_USERNAME'),   
+            'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD'),   
+            'HOST': '127.0.0.1',   
+            'PORT': '3306',   
+            'OPTIONS': {   
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"   
+            }   
+        },
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        },
+        
+    }
 
 pymysql.version_info = (1, 4, 2, "final", 0)
 pymysql.install_as_MySQLdb()
