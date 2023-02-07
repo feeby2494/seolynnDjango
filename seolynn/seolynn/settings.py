@@ -93,11 +93,12 @@ if len(os.getenv('MYSQL_DATABASE_NAME')) >= 1:
             'ENGINE': 'django.db.backends.mysql',   
             'NAME': os.getenv('MYSQL_DATABASE_NAME'),   
             'USER': os.getenv('MYSQL_DATABASE_USERNAME'),   
-            'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD'),   
-            'HOST': '127.0.0.1',   
-            'PORT': '3306',   
+            'PASSWORD': os.getenv('MYSQL_DATABASE_PASSWORD'),  
+            'HOST': os.getenv('MYSQL_DATABASE_URI'), 
+            'PORT': os.getenv('MYSQL_DATABASE_PORT'),
             'OPTIONS': {   
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"   
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'ssl': os.getenv('MYSQL_DATABASE_SSL') == 'True'
             }   
         },
     }
