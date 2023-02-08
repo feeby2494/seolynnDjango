@@ -32,7 +32,7 @@ print(BASE_DIR)
 SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 
@@ -99,7 +99,7 @@ if len(os.getenv('MYSQL_DATABASE_NAME')) >= 1:
             'PORT': os.getenv('MYSQL_DATABASE_PORT'),
             'OPTIONS': {   
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                'ssl': os.getenv('MYSQL_DATABASE_SSL')
+                'ssl': os.getenv('MYSQL_DATABASE_SSL', 'False').lower() in ('true', '1', 't')
             }   
         },
     }
