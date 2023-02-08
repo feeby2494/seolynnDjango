@@ -99,7 +99,7 @@ if len(os.getenv('MYSQL_DATABASE_NAME')) >= 1:
             'PORT': os.getenv('MYSQL_DATABASE_PORT'),
             'OPTIONS': {   
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                'ssl': os.getenv('MYSQL_DATABASE_SSL') == 'True'
+                'ssl': os.getenv('MYSQL_DATABASE_SSL')
             }   
         },
     }
