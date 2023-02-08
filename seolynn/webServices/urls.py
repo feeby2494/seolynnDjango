@@ -8,4 +8,5 @@ urlpatterns = [
     path('<str:username>/projects_all/', ProjectsAll.as_view(), name="ProjectsAll"),
     path('<str:username>/<slug:work_order_slug>/', ProjectsForOneOrder.as_view(), name="ProjectsForOneOrder"),
     path('<str:username>/<int:order_id>/<int:project_id>/', ProjectSingle.as_view(), name="ProjectSingle"),
+    
 ]

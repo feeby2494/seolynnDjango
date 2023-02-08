@@ -2,5 +2,10 @@
 {% load i18n %}
 
 {% block contents %}
-	<p>{% trans "Registration is currently closed." %}</p>
+	<section class="hero is-link">
+		<div class="hero-body">
+			<p class="subtitle mt-2">{% trans "Registration is currently closed." %}</p>
+		</div>
+	</section>
+	
 {% endblock %}

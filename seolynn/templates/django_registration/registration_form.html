@@ -1,11 +1,70 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block contents %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
+{% load widget_tweaks %}
 
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+{% block title %}
+    <title>Registration</title>
+{% endblock %}
+
+{% block contents %}
+  <section class="hero has-text-centered ">
+    <div class="hero-body">
+      <div class="task-container columns is-multiline">
+        <div class="card column is-4 is-offset-4 is-12-mobile">
+          <h2 class="title">Registration</h2>
+          <form method="post" class="form" action=".">
+            {% csrf_token %}
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.username|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.email|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.password1|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="field">
+              <label class="label">Password Again</label>
+              <div class="control has-icons-left has-icons-right">
+                {{ form.password2|add_class:"input is-success" }}
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link mt-1" value="{% trans 'Submit' %}">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
