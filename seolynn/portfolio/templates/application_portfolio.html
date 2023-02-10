@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>All Our Web Applications</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="section">
+        <h2 class="title has-text-centered">All Our Web Applications</h2>
+    </section>
+    <div id="allApps" class="columns is-multiline">
+        {% for app in object_list %}
+            <div class="column is-4">
+                <div class="card mt-3 ">
+                    <div class="card-content">
+                        <h3>{{app.project_ptr.name}}</h3>
+                        <ul>
+                            <li><a href="{% url 'SingleApplication' pk=app.pk %}">More Info on this Application</a></li>
+                            <li><a href="{{app.project_ptr.get_link}}">Link to this Application</a></li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        {% endfor %}
+    </div> 
+{% endblock %}

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'home',
     'webServices',
     'widget_tweaks',
+    'portfolio',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Case Study: {{object.pk}}</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="section">
+        <h2 class="title has-text-centered">Case Study: {{object.pk}}</h2>
+    </section>
+        <div class="is-10">
+            <div class="card mt-3 has-text-centered">
+                <div class="card-content">
+                    <h3>Name: {{object.project_ptr.name}}</h3>
+                    <p>Made using:
+                        {% if object.r_lang %}
+                            R Language
+                        {% endif %}
+                        {% if object.python %}
+                            Python
+                        {% endif %}
+
+                    </p>
+                    <p>Short Desc: {{ object.short_desc }}</p>
+                    <a href="{{object.project_ptr.get_link}}">Link to this Study</a>
+                </div>
+            </div> 
+        </div>
+
+{% endblock %}

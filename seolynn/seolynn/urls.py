@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('account/', include('django.contrib.auth.urls')),
     path('webservices/', include('webServices.urls')),
+    path('portfolio/', include('portfolio.urls')),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 

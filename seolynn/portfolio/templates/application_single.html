@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Web Application: {{object.pk}}</title>
+{% endblock %}
+
+{% block contents %}
+    <section class="section">
+        <h2 class="title has-text-centered">Web Application: {{object.pk}}</h2>
+    </section>
+        <div class="is-10 has-text-centered">
+            <div class="card mt-3 ">
+                <div class="card-content">
+                    <h3>{{object.project_ptr.name}}</h3>
+                    <p>Stack Used: {{ object.stack_used }}</p>
+                    <p>Desc: {{ object.desc }}</p>
+                    <a href="{{object.project_ptr.get_link}}">Link to this Application</a>
+                </div>
+            </div> 
+        </div>
+{% endblock %}
