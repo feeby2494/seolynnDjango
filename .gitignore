@@ -11,5 +11,3 @@ seolynn/db.sqlite3
 */__pycache__
 seolynn/seolynn/__pycache__
 seolynn/home/__pycache__
-
-seolynn/staticfiles/
