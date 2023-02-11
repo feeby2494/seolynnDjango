@@ -20,9 +20,9 @@
 
         {% if request.user.is_authenticated %}
         <div class="navbar-item has-dropdown is-hoverable">
-          <button class="navbar-link">
+          <p class="navbar-link">
             Web Services
-          </button>
+          </p>
   
           <div class="navbar-dropdown">
             <a class="navbar-item" href="{% url 'OrderSubmitSingleProject'  %}">
@@ -42,9 +42,9 @@
         </div>
         {% endif %}
         <div class="navbar-item has-dropdown is-hoverable">
-          <button class="navbar-link">
+          <p class="navbar-link">
             Portfolio
-          </button>
+          </p>
   
           <div class="navbar-dropdown">
             <a class="navbar-item" href="{% url 'ApplicationPortfolio'  %}">
