@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'webServices',
     'widget_tweaks',
     'portfolio',
+    'testMatPlt',
 ]
 
 MIDDLEWARE = [

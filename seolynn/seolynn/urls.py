@@ -24,6 +24,7 @@ urlpatterns = [
     path('account/', include('django.contrib.auth.urls')),
     path('webservices/', include('webServices.urls')),
     path('portfolio/', include('portfolio.urls')),
+    path('test-mat-plt/', include('testMatPlt.urls')),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 
