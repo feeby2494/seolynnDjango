@@ -16,6 +16,12 @@ Including another URLconf
 from cgitb import handler
 from django.contrib import admin
 from django.urls import path, re_path, include
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
+
+# How is this so hard! What the Fucking Hell is going on? 
+favicon_view = RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'))
+
 
 urlpatterns = [
     path('', include('home.urls')),
@@ -25,6 +31,10 @@ urlpatterns = [
     path('webservices/', include('webServices.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('test-mat-plt/', include('testMatPlt.urls')),
+    # I mean what the Hell is going on with the favicon? How can I get a 500 or 404 with this?
+    path('static/favicon.ico', favicon_view, name='favicon'),
+    path('favicon.ico', favicon_view, name='favicon'),
+    re_path(r'^favicon\.ico$', favicon_view, name='favicon'),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 
