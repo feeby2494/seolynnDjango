@@ -9,7 +9,7 @@
     <section class="hero is-link">
         <div class="hero-body">
             {% if request.user.is_authenticated %}
-            <p class="title">
+            <p class="title has-text-white">
             Hello, {{ user.get_username }}
             </p>
             <p class="subtitle mt-2">

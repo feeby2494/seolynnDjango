@@ -17,7 +17,7 @@ from cgitb import handler
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView, TemplateView
 import os
 from django.conf import settings
 from django.conf.urls.static import static
@@ -37,6 +37,7 @@ urlpatterns = [
     # I mean what the Hell is going on with the favicon? How can I get a 500 or 404 with this?
     path('favicon.ico', favicon_view, name='favicon'),
     re_path(r'^favicon\.ico$', favicon_view, name='favicon'),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 
