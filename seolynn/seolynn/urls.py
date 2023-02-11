@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+import os
+from django.conf import settings
+from django.conf.urls.static import static
 
 # How is this so hard! What the Fucking Hell is going on? 
 favicon_view = RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'))
@@ -36,5 +39,8 @@ urlpatterns = [
     re_path(r'^favicon\.ico$', favicon_view, name='favicon'),
     # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
+
+if os.getenv("DEBUG", "False").lower() in ("true", "1", "t"):
+    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = 'seolynn.views.handler404'
