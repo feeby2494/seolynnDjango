@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-registration = "*"
+django-widget-tweaks = "*"
+gunicorn = "*"
+matplotlib = "*"
+numpy = "*"
+pillow = "*"
+pymysql = "*"
+python-dotenv = "*"
+
+[dev-packages]
+
+[requires]
