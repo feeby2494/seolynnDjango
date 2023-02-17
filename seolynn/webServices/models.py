@@ -57,3 +57,6 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return f"/webservices/{self.order.user.get_username()}/{self.order.id}/{self.id}/"
+
+
+

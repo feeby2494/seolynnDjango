@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv, find_dotenv
 import pymysql
 from django.core.management.utils import get_random_secret_key
@@ -114,6 +115,12 @@ else:
         
     }
 
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'test_database.sqlite3',
+    }
+
 pymysql.version_info = (1, 4, 2, "final", 0)
 pymysql.install_as_MySQLdb()
 
@@ -155,6 +162,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if os.getenv("DEBUG", "False").lower() in ("true", "1", "t"):
     STATICFILES_DIRS = (Path(BASE_DIR).joinpath('static'),)
+    print(f"staticfiles is {STATICFILES_DIRS}")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -176,4 +184,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('GMAIL_SMTP_USER')
 EMAIL_HOST_PASSWORD = os.getenv('GMAIL_APP_PASSWORD')
+
+NOSE_ARGS = ['--nocapture',
+             '--nologcapture',]
+
                                                                           
