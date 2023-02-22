@@ -189,3 +189,5 @@ NOSE_ARGS = ['--nocapture',
              '--nologcapture',]
 
                                                                           
+# for admin mail for debuging
+ADMINS = (('jlynn', 'toby2494@hotmail.com'), ) 
