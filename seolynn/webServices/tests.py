@@ -47,3 +47,4 @@ class WebServicesTestCase(TestCase):
         self.assertEqual(test_project2, model_to_dict(new_project2))
 
 ## Think we need to take the slugs out, simplify the amount of vars
+
