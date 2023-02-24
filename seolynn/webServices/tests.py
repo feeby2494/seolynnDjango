@@ -132,3 +132,7 @@ class WebServicesModelsTestCase(unittest.TestCase):
 #         password_input = self.selenium.find_element(By.NAME, "password")
 #         password_input.send_keys('secret')
 #         self.selenium.find_element(By.XPATH, '//input[@value="Log in"]').click()
+
+## Think we need to take the slugs out, simplify the amount of vars
+
+

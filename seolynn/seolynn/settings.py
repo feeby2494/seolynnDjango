@@ -191,6 +191,7 @@ EMAIL_HOST_PASSWORD = os.getenv('GMAIL_APP_PASSWORD')
 NOSE_ARGS = ['--nocapture',
              '--nologcapture',]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -206,3 +207,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
    ),
 }
+
+                                                                          
+
+ADMINS = (('jlynn', 'toby2494@hotmail.com'), ) 
+
