@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('account/', include('django.contrib.auth.urls')),
+    path('language/', include('languageApi.urls')),
     path('webservices/', include('webServices.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('test-mat-plt/', include('testMatPlt.urls')),

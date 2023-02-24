@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "ESP23HelloWorld",
+			"path": "../../../../../PlatformIO/Projects/ESP23HelloWorld"
+		},
+		{
+			"path": "../../../../../iotProjects/my-lambda-function"
+		},
+		{
+			"path": "../../../theTekCowboysFlaskReact"
+		}
+	],
+	"settings": {}
+}

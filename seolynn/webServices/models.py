@@ -22,6 +22,9 @@ class WorkOrder(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="work_orders")
     #customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="order_list")
 
+    class Meta:
+        ordering = ('-date_submitted',)
+
     def __str__(self):
         return f"{self.slug}"
 
@@ -30,6 +33,8 @@ class WorkOrder(models.Model):
 
     def get_absolute_url(self):
         return f"/webservices/{self.user.get_username()}/{self.slug}/"
+
+    
 
 # one-to-many with order=> one ; project: many
 class Project(models.Model):
@@ -45,6 +50,9 @@ class Project(models.Model):
     description = models.TextField(blank=True)
 
     order = models.ForeignKey(WorkOrder, on_delete=models.PROTECT, related_name="project_list")
+
+    class Meta:
+        ordering = ('project_name',)
 
     def __str__(self):
         return f"{self.slug} ( Order ID:{self.order.id} )"
