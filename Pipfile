@@ -13,6 +13,8 @@ numpy = "*"
 pillow = "*"
 pymysql = "*"
 python-dotenv = "*"
+djangorestframework = "*"
+requests = "*"
 
 [dev-packages]
 
