@@ -31,15 +31,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('account/', include('django.contrib.auth.urls')),
-    path('language/', include('languageApi.urls')),
+    # path('api/v1/', include(('languageApi.urls', 'webServices.urls',))),
+    path('api/v1/study/', include('languageApi.urls')), 
+    path('api/v1/repair/', include('repairApi.urls')), 
     path('webservices/', include('webServices.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('test-mat-plt/', include('testMatPlt.urls')),
-    # I mean what the Hell is going on with the favicon? How can I get a 500 or 404 with this?
     path('favicon.ico', favicon_view, name='favicon'),
     re_path(r'^favicon\.ico$', favicon_view, name='favicon'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    # re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
+    re_path(r'^(?P<path>.*)/$', include('home.urls')), #Catch All path => home app
 ]
 
 if os.getenv("DEBUG", "False").lower() in ("true", "1", "t"):
