@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'portfolio',
     'testMatPlt',
     'languageApi',
+    'repairApi',
     'rest_framework',
     'rest_framework.authtoken',
 ]

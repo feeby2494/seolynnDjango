@@ -1,37 +1,36 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
-from .serializers import WordSerializer
-from .models import Word
+from .serializers import WordSerializer, LanguageSerializer, CollectionSerializer
+from .models import Word, Language, Collection
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 
+
+class LanguageListOrCreate(ListCreateAPIView):
+    queryset = Language.objects.all()
+    serializer_class = LanguageSerializer
+    lookup_field = 'slug'
+
+class LanguageSingle(RetrieveUpdateDestroyAPIView):
+    queryset = Language.objects.all()
+    serializer_class = LanguageSerializer
+    lookup_field = 'slug'
+
+class CollectionListOrCreate(ListCreateAPIView):
+    queryset = Collection.objects.all()
+    serializer_class = CollectionSerializer
+    lookup_field = 'slug'
+
+class CollectionSingle(RetrieveUpdateDestroyAPIView):
+    queryset = Collection.objects.all()
+    serializer_class = CollectionSerializer
+    lookup_field = 'slug'
 
 class WordListOrCreate(ListCreateAPIView):
-     queryset = Word.objects.all()
-     serializer_class = WordSerializer
+    queryset = Word.objects.all()
+    serializer_class = WordSerializer
 
-
-# # Create your views here.
-# class Word(ListCreateAPIView):
-#     queryset = Word.objects.all()
-#     # permission_classes = [permissions.IsAuthenticated]
-#     # authentication_classes = (TokenAuthentication,) 
-#     serializer_class = WordSerializer
-
-#     def get_queryset(self):
-#         return self.queryset.filter(user=self.request.user)
-
-#     def list(self, request):
-#         queryset = self.get_queryset()
-#         serializer = WordSerializer(queryset, many=True)
-#         return Response(serializer.data)
-
-#     def create(self, request):
-
-
-    
-
-class WordSingle(RetrieveAPIView):
+class WordSingle(RetrieveUpdateDestroyAPIView):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
